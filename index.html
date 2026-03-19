@@ -21,6 +21,7 @@
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
 
         h1 {
@@ -77,11 +78,33 @@
         a:hover {
             color: red;
         }
+
+        .poza {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+            border: 3px solid orange;
+        }
+
+        .row {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .col {
+            flex: 1;
+            text-align: left;
+        }
     </style>
 </head>
    
 <body>
     <div class="container">
+
+    <img src="https://via.placeholder.com/120" alt="poza mea" class="poza">
 
         <h1>Salut! Eu sunt Alex</h1>
         <p class="subtitlu">Frontend Developer in devenire | HTML, CSS, JavaScript</p>
@@ -93,17 +116,32 @@
         <button onclick="schimbaTextul()">Schimba textul</button>
         <button onclick="culoareRandom()">Tema Random</button>
 
+    <div class="row">
+
+    <div class="col">        
         <h2>Skills</h2>
         <ul>
             <li>HTML</li>
             <li>CSS</li>
             <li>JavaScript</li>
         </ul>
+    </div>    
 
-        <h2>Proiecte</h2>
+    <div class="col">
+         <h2>Proiecte</h2>
         <ul>
-            <li>Portofoliu personal realizat cu HTML, CSS si JavaScript</li>
+            <li>
+                Portofoliu personal realizat cu HTML, CSS si JavaScript -
+                <a href="https://blaualex97-commits.github.io/portofoliu-Alexandru.Filip/" target="_blank">Vezi proiectul live</a>
+            </li>
+            <li>
+                Codul proiectului - 
+                <a href="https://github.com/blaualex97-commits/portofoliu-Alexandru.Filip" target="_blank">Vezi repository-ul</a>
+            </li>
         </ul>
+     </div>
+
+</div>     
 
         <h2>Ce invat acum</h2>
         <p>Invat sa construiesc site-uri interactive si sa imi dezvolt portofoliul pentru primul job in IT.</p>
