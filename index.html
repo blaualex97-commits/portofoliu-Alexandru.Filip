@@ -98,16 +98,64 @@
             flex: 1;
             text-align: left;
         }
+
+        .card {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 12px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border: 1px solid orange;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            .container {
+                padding: 20px;
+            }
+            .row {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+            
+            h2 {
+                font-size: 28px;
+            }
+
+            p, li {
+                font-size: 18px;
+            }
+            button {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .poza {
+                width: 100px;
+                height: 100px;
+            }
+        }
     </style>
 </head>
    
 <body>
     <div class="container">
 
-    <img src="https://via.placeholder.com/120" alt="poza mea" class="poza">
+    <img src="alexpoza.png" alt="poza mea" class="poza">
 
         <h1>Salut! Eu sunt Alex</h1>
-        <p class="subtitlu">Frontend Developer in devenire | HTML, CSS, JavaScript</p>
+        <p class="subtitlu">Viitor Frontend Developer | HTML, CSS, JavaScript</p>
 
         <h2>Despre Mine</h2>
         <p>Sunt Alexandru, invat programare si vreau sa devin Frontend Developer.</p>
@@ -118,28 +166,32 @@
 
     <div class="row">
 
-    <div class="col">        
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-        </ul>
-    </div>    
+    <div class="col"> 
+        <div class="card">       
+            <h2>Skills</h2>
+            <ul>
+               <li>HTML</li>
+               <li>CSS</li>
+               <li>JavaScript</li>
+           </ul>
+        </div>
+    </div>        
 
     <div class="col">
-         <h2>Proiecte</h2>
-        <ul>
-            <li>
+        <div class="card">
+            <h2>Proiecte</h2>
+              <ul>
+               <li>
                 Portofoliu personal realizat cu HTML, CSS si JavaScript -
                 <a href="https://blaualex97-commits.github.io/portofoliu-Alexandru.Filip/" target="_blank">Vezi proiectul live</a>
-            </li>
+               </li>
             <li>
                 Codul proiectului - 
                 <a href="https://github.com/blaualex97-commits/portofoliu-Alexandru.Filip" target="_blank">Vezi repository-ul</a>
             </li>
         </ul>
      </div>
+   </div> 
 
 </div>     
 
