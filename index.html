@@ -5,6 +5,11 @@
     <title>Portofoliu Alexandru Filip</title>
 
     <style>
+
+    html {
+        scroll-behavior: smooth;
+    }
+
         body {
             background-color: #111;
             color: white;
@@ -234,16 +239,64 @@
             background-color: red;
             color: white;
         }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 20px auto 0;
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: auto;
+        }
+
+        .light-mode .contact-form input,
+        .light-mode .contact-form textarea {
+            background-color: #f0f0f0;
+            color: #111;
+        }
+
+        #confirmare {
+            margin-top: 15px;
+            font-weight: bold;
+            color: lightgreen;
+        }
+
+        .light-mode #confirmare {
+            color: green
+        }
     </style>
 </head>
    
 <body>
 
 <nav class="navbar">
-    <a href="#">Acasa</a>
-    <a href="#">Despre</a>
-    <a href="#">Proiecte</a>
-    <a href="#">Contact</a>
+    <a href="#acasa">Acasa</a>
+    <a href="#despre">Despre</a>
+    <a href="#proiecte">Proiecte</a>
+    <a href="#contact">Contact</a>
     <button onclick="schimbaTema()">Tema</button>
 
 </nav>    
@@ -252,10 +305,10 @@
 
     <img src="alexpoza.png" alt="poza mea" class="poza">
 
-        <h1>Salut! Eu sunt Alex</h1>
+        <h1 id="acasa">Salut! Eu sunt Alex</h1>
         <p class="subtitlu">Viitor Frontend Developer | HTML, CSS, JavaScript</p>
 
-        <h2>Despre Mine</h2>
+        <h2 id="despre">Despre Mine</h2>
         <p>Sunt Alexandru, invat programare si vreau sa devin Frontend Developer.</p>
 
         <p id="textSchimbator">Imi place sa invat Full Stack Development</p>
@@ -277,7 +330,7 @@
 
     <div class="col">
         <div class="card">
-            <h2>Proiecte</h2>
+            <h2 id="proiecte">Proiecte</h2>
               <ul>
                <li>
                 Portofoliu personal realizat cu HTML, CSS si JavaScript -
@@ -296,10 +349,25 @@
         <h2>Ce invat acum</h2>
         <p>Invat sa construiesc site-uri interactive si sa imi dezvolt portofoliul pentru primul job in IT.</p>
         
-        <h2>Contact</h2>
+        <h2 id="contact">Contact</h2>
         <p><a href="cv-alexandru-filip.pdf" download class="cv-btn">Descarca CV</a></p>
         <p>Email: <a href="mailto:blaualex97@gmail.com">blaualex97@gmail.com</a></p>
         <p>GitHub: <a href="https://github.com/blaualex97-commits" target="_blank">github.com/blaualex97-commits</a></p>
+
+        <form class="contact-form" onsubmit="trimiteFormular(event)">
+            <label for="nume">Nume</label>
+            <input type="text" id="nume" name="nume" placeholder="Scrie numele tau">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Scrie emailul tau">
+
+            <label for="mesaj">Mesaj</label>
+            <textarea id="mesaj" name="mesaj" placeholder="Scrie mesajul tau"></textarea>
+
+            <button type="submit">Trimite</button>
+    </form>
+
+    <p id="confirmare"></p>
    
         <script>
             function schimbaTextul() {
@@ -329,6 +397,12 @@
 
             function schimbaTema() {
                 document.body.classList.toggle("light-mode");
+            }
+
+            function trimiteFormular(event) {
+                event.preventDefault();
+
+                document.getElementById("confirmare").innerText = "Mesaj trimis cu succes!";
             }
         </script>
     </div>
