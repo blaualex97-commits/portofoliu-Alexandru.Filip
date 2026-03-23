@@ -232,7 +232,7 @@
             padding: 10px 20px;
             border-radius: 8px;
             margin-top: 10px;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
         .cv-btn:hover {
@@ -282,10 +282,27 @@
             margin-top: 15px;
             font-weight: bold;
             color: lightgreen;
+            transition: 0.3s;
         }
 
         .light-mode #confirmare {
-            color: green
+            color: green;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px orange;
+        }
+
+        .light-mode .cv-btn {
+            background-color: #ff6600;
+            color: white;
+        }
+
+        .light-mode .cv-btn:hover {
+            background-color: #cc5500;
+            color: white;
         }
     </style>
 </head>
@@ -402,7 +419,22 @@
             function trimiteFormular(event) {
                 event.preventDefault();
 
+                let nume = document.getElementById("nume").value;
+                let email = document.getElementById("email").value;
+                let mesaj = document.getElementById("mesaj").value;
+
+                if (nume === "" || email === "" || mesaj === "") {
+                    document.getElementById("confirmare").innerText = "Completeaza toate campurile!";
+                    document.getElementById("confirmare").style.color = "red";
+                    return;
+                }
+
                 document.getElementById("confirmare").innerText = "Mesaj trimis cu succes!";
+                document.getElementById("confirmare").style.color = "lightgreen";
+
+                document.getElementById("nume").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("mesaj").value = "";
             }
         </script>
     </div>
