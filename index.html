@@ -180,6 +180,60 @@
         .navbar a:hover {
             color: red;
         }
+
+        .light-mode {
+            background-color: #f5f5f5;
+            color: #111;
+        }
+
+        .light-mode .container {
+            background-color: white;
+            color: #111;
+        }
+
+        .light-mode .card {
+            background-color: #eeeeee;
+        }
+
+        .light-mode .navbar {
+            background-color: #ddd;
+        }
+
+        .light-mode a {
+            color: darkorange;
+        }
+
+        .light-mode h1,
+        .light-mode h2 {
+            color: #cc5500;
+        }
+
+        .light-mode .subtitlu {
+            color: #555;
+        }
+
+        body, .container, .card, .navbar {
+            transition: all 0.3s ease;
+        }
+
+        .light-mode a:hover {
+            color: #ff4500;
+        }
+
+        .cv-btn {
+            display: inline-block;
+            background-color: orange;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .cv-btn:hover {
+            background-color: red;
+            color: white;
+        }
     </style>
 </head>
    
@@ -190,6 +244,7 @@
     <a href="#">Despre</a>
     <a href="#">Proiecte</a>
     <a href="#">Contact</a>
+    <button onclick="schimbaTema()">Tema</button>
 
 </nav>    
 
@@ -242,6 +297,7 @@
         <p>Invat sa construiesc site-uri interactive si sa imi dezvolt portofoliul pentru primul job in IT.</p>
         
         <h2>Contact</h2>
+        <p><a href="cv-alexandru-filip.pdf" download class="cv-btn">Descarca CV</a></p>
         <p>Email: <a href="mailto:blaualex97@gmail.com">blaualex97@gmail.com</a></p>
         <p>GitHub: <a href="https://github.com/blaualex97-commits" target="_blank">github.com/blaualex97-commits</a></p>
    
@@ -269,6 +325,10 @@
                 } else {
                     document.body.style.color = "white";
                 }              
+            }
+
+            function schimbaTema() {
+                document.body.classList.toggle("light-mode");
             }
         </script>
     </div>
