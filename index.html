@@ -228,13 +228,21 @@
         }
 
         @keyframes shine {
-            0% { transform: translateX(-100%); }
-            50%, 100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+            50%, 100% {
+                transform: translateX(100%);
+            }
         }
 
         @keyframes cardFloat {
-            0%, 100% { transform: rotateY(-10deg) rotateX(6deg) translateY(0); }
-            50% { transform: rotateY(-5deg) rotateX(3deg) translateY(-18px); }
+            0%, 100% {
+                transform: rotateY(-10deg) rotateX(6deg) translateY(0);
+            }
+            50% {
+                transform: rotateY(-5deg) rotateX(3deg) translateY(-18px);
+            }
         }
 
         .profile-img {
@@ -371,8 +379,7 @@
             padding: 24px;
             min-height: 360px;
             border-radius: 28px;
-            background:
-                linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
+            background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
             border: 1px solid rgba(255, 165, 0, 0.16);
             overflow: hidden;
             transition: 0.3s;
@@ -549,6 +556,10 @@
             border-color: rgba(255, 140, 0, 0.25);
         }
 
+        .light-mode .project-card h3 {
+            color: #111;
+        }
+
         @media (max-width: 850px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -635,8 +646,8 @@
 
                 <div class="hero-actions">
                     <a href="#projects" class="btn">View Projects</a>
-                    <a href="cv-alexandru-filip.pdf" download class="btn secondary">Download CV</a>
-                    <a href="mailto:blaualex97@gmail.com" class="btn secondary">Contact Me</a>
+                    <a href="cv-alexandru-filip.pdf" download class="btn secondary">⬇ Download CV</a>
+                    <a href="#contact" class="btn secondary">Contact Me</a>
                 </div>
             </div>
 
@@ -864,8 +875,8 @@
                 <p>GitHub: <a href="https://github.com/blaualex97-commits" target="_blank">github.com/blaualex97-commits</a></p>
 
                 <div class="hero-actions">
-                    <a href="cv-alexandru-filip.pdf" download class="btn">Download CV</a>
-                    <a href="mailto:blaualex97@gmail.com" class="btn secondary">Send Email</a>
+                    <a href="cv-alexandru-filip.pdf" download class="btn">⬇ Download CV</a>
+                    <a href="mailto:blaualex97@gmail.com" class="btn secondary">✉ Send Email</a>
                 </div>
             </div>
         </section>
