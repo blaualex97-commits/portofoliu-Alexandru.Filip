@@ -6,83 +6,193 @@
 <title>Alexandru Filip | Frontend Developer</title>
 
 <style>
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #050505;
     color: white;
+    overflow-x: hidden;
 }
 
-.container {
-    width: min(1100px, 92%);
-    margin: auto;
-    padding: 60px 0 120px;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 165, 0, 0.22), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(255, 0, 0, 0.14), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(255, 165, 0, 0.12), transparent 35%),
+        #050505;
+    z-index: -3;
 }
 
-/* NAVBAR */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 55px 55px;
+    z-index: -2;
+}
+
+.orb {
+    position: fixed;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.35;
+    animation: floatOrb 10s ease-in-out infinite;
+    z-index: -1;
+}
+
+.orb.one {
+    background: orange;
+    top: 120px;
+    left: -80px;
+}
+
+.orb.two {
+    background: red;
+    right: -90px;
+    bottom: 130px;
+    animation-delay: 3s;
+}
+
+@keyframes floatOrb {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-40px) translateX(35px);
+    }
+}
+
 .navbar {
     position: fixed;
-    bottom: 20px;
     left: 50%;
+    bottom: 24px;
     transform: translateX(-50%);
+    z-index: 1000;
     display: flex;
     gap: 10px;
-    padding: 10px 14px;
+    align-items: center;
+    padding: 12px 16px;
     border-radius: 999px;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 10, 0.78);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 165, 0, 0.25);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
-.navbar a {
+.navbar a,
+.theme-btn {
     color: white;
     text-decoration: none;
-    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 9px 13px;
     border-radius: 999px;
+    transition: 0.25s;
+    white-space: nowrap;
 }
 
-.navbar a:hover {
+.navbar a:hover,
+.theme-btn:hover {
     background: orange;
     color: black;
 }
 
-/* HERO */
+.theme-btn {
+    border: none;
+    background: rgba(255, 165, 0, 0.15);
+    cursor: pointer;
+}
+
+.container {
+    width: min(1150px, 92%);
+    margin: 0 auto;
+    padding: 55px 0 120px;
+}
+
 .hero {
-    text-align: center;
-    margin-top: 60px;
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 45px;
+}
+
+.badge {
+    display: inline-flex;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255, 165, 0, 0.12);
+    border: 1px solid rgba(255, 165, 0, 0.28);
+    color: orange;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 h1 {
-    font-size: 50px;
+    font-size: clamp(42px, 7vw, 78px);
+    line-height: 1.02;
+    margin: 0;
+    letter-spacing: -2px;
 }
 
-.gradient {
-    color: orange;
+.gradient-text {
+    background: linear-gradient(90deg, orange, #ff3b3b, #ffd166);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.7;
+    color: #d5d5d5;
+    max-width: 650px;
+    margin: 24px 0;
 }
 
 .hero-actions {
-    margin-top: 25px;
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    gap: 14px;
     flex-wrap: wrap;
 }
 
 .btn {
-    padding: 12px 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 20px;
     border-radius: 999px;
     background: orange;
     color: black !important;
     text-decoration: none;
     font-weight: bold;
+    border: 1px solid orange;
+    transition: 0.25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 165, 0, 0.25);
 }
 
 .btn.secondary {
     background: transparent;
     color: orange !important;
-    border: 1px solid orange;
 }
 
 .btn.secondary:hover {
@@ -90,121 +200,694 @@ h1 {
     color: black !important;
 }
 
-/* SECTIONS */
-section {
-    margin-top: 80px;
+.hero-visual {
+    perspective: 1000px;
+}
+
+.profile-3d-card {
+    position: relative;
+    padding: 28px;
+    border-radius: 32px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+    border: 1px solid rgba(255, 165, 0, 0.25);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+    transform: rotateY(-10deg) rotateX(6deg);
+    animation: cardFloat 5s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.profile-3d-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(120deg, transparent, rgba(255, 165, 0, 0.25), transparent);
+    transform: translateX(-100%);
+    animation: shine 4s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%);
+    }
+    50%, 100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        transform: rotateY(-10deg) rotateX(6deg) translateY(0);
+    }
+    50% {
+        transform: rotateY(-5deg) rotateX(3deg) translateY(-18px);
+    }
+}
+
+.profile-img {
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid orange;
+    display: block;
+    margin: 0 auto 22px;
+    position: relative;
+    z-index: 2;
+}
+
+.profile-3d-card h2 {
+    text-align: center;
+    color: orange;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.profile-3d-card p {
+    text-align: center;
+    color: #ddd;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+}
+
+.mini-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.stat {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 165, 0, 0.16);
+    border-radius: 18px;
+    padding: 14px 10px;
     text-align: center;
 }
 
-.card {
-    background: #111;
-    padding: 25px;
-    border-radius: 15px;
-}
-
-/* PROJECTS */
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-    gap: 20px;
-}
-
-.project {
-    background: #111;
-    padding: 20px;
-    border-radius: 15px;
-}
-
-/* CONTACT */
-.contact a {
+.stat strong {
+    display: block;
     color: orange;
+    font-size: 22px;
+}
+
+.stat span {
+    font-size: 13px;
+    color: #bbb;
+}
+
+section {
+    margin-top: 80px;
+}
+
+.section-title {
+    font-size: clamp(34px, 5vw, 52px);
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #bbb;
+    max-width: 720px;
+    margin: 0 auto 35px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 165, 0, 0.16);
+    border-radius: 28px;
+    padding: 30px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+}
+
+.about-text {
+    color: #ddd;
+    font-size: 19px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 18px;
+}
+
+.skill-card {
+    padding: 22px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 165, 0, 0.14);
+    text-align: center;
+    transition: 0.25s;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    border-color: orange;
+    box-shadow: 0 18px 45px rgba(255, 165, 0, 0.12);
+}
+
+.skill-icon {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.skill-card h3 {
+    margin: 0;
+    color: orange;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.project-card {
+    position: relative;
+    padding: 24px;
+    min-height: 360px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
+    border: 1px solid rgba(255, 165, 0, 0.16);
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: orange;
+    filter: blur(80px);
+    opacity: 0.12;
+    top: -50px;
+    right: -50px;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.015);
+    border-color: orange;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+}
+
+.project-number {
+    font-size: 14px;
+    color: orange;
+    font-weight: bold;
+}
+
+.project-card h3 {
+    color: white;
+    font-size: 26px;
+    margin: 14px 0;
+}
+
+.project-card p {
+    color: #d0d0d0;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+}
+
+.tag {
+    background: rgba(255, 165, 0, 0.12);
+    border: 1px solid rgba(255, 165, 0, 0.18);
+    color: orange;
+    padding: 7px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.project-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.small-btn {
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: orange;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.small-btn:hover {
+    background: red;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.small-btn.outline {
+    background: transparent;
+    color: orange;
+    border: 1px solid orange;
+}
+
+.timeline {
+    display: grid;
+    gap: 18px;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.timeline-date {
+    color: orange;
+    font-weight: bold;
+}
+
+.timeline-content {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 165, 0, 0.14);
+    border-radius: 20px;
+    padding: 18px;
+    color: #ddd;
+    line-height: 1.7;
+}
+
+.contact-card {
+    text-align: center;
+}
+
+.contact-card p {
+    color: #ddd;
+    font-size: 18px;
+}
+
+.contact-card a {
+    color: orange;
+    font-weight: bold;
     text-decoration: none;
 }
 
 footer {
+    margin-top: 70px;
     text-align: center;
-    margin-top: 50px;
     color: #777;
+    font-size: 14px;
+}
+
+.light-mode {
+    background: #f5f5f5;
+    color: #111;
+}
+
+.light-mode::before {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 165, 0, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(255, 0, 0, 0.10), transparent 28%),
+        #f5f5f5;
+}
+
+.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.86);
+}
+
+.light-mode .navbar a {
+    color: #cc5500;
+}
+
+.light-mode .hero p,
+.light-mode .about-text,
+.light-mode .section-subtitle,
+.light-mode .project-card p,
+.light-mode .timeline-content,
+.light-mode .contact-card p {
+    color: #333;
+}
+
+.light-mode .glass-card,
+.light-mode .skill-card,
+.light-mode .project-card,
+.light-mode .timeline-content,
+.light-mode .profile-3d-card {
+    background: rgba(255, 255, 255, 0.76);
+    border-color: rgba(255, 140, 0, 0.25);
+}
+
+.light-mode .project-card h3 {
+    color: #111;
+}
+
+@media (max-width: 850px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .profile-3d-card {
+        transform: none;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        width: 92%;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .container {
+        width: 92%;
+        padding-bottom: 130px;
+    }
+
+    .hero-actions,
+    .project-links {
+        flex-direction: column;
+    }
+
+    .btn,
+    .small-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mini-stats {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
 
 <body>
+<div class="orb one"></div>
+<div class="orb two"></div>
 
 <nav class="navbar">
-<a href="#home">Home</a>
-<a href="#projects">Projects</a>
-<a href="#contact">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#journey">Journey</a>
+    <a href="#contact">Contact</a>
+    <button class="theme-btn" onclick="toggleTheme()">Theme</button>
 </nav>
 
-<div class="container">
+<main class="container">
 
-<!-- HERO -->
 <section id="home" class="hero">
-<h1>Hello, I'm <span class="gradient">Alex</span></h1>
-<p>Frontend Developer in progress. Building real apps.</p>
+    <div>
+        <div class="badge">Available for Junior Frontend Opportunities</div>
 
-<div class="hero-actions">
-<a href="#projects" class="btn">View Projects</a>
-<a href="cv-alexandru-filip.pdf" download class="btn secondary">⬇ Download CV</a>
-<a href="#contact" class="btn secondary">Contact Me</a>
-</div>
+        <h1>
+            Hi, I'm <span class="gradient-text">Alexandru Filip</span>
+        </h1>
+
+        <p>
+            I build modern, responsive and interactive web applications using HTML, CSS and JavaScript.
+            I am currently preparing to move into React and become job-ready as a Frontend Developer.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#projects" class="btn">View Projects</a>
+            <a href="cv-alexandru-filip.pdf" download class="btn secondary">⬇ Download CV</a>
+            <a href="#contact" class="btn secondary">Contact Me</a>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="profile-3d-card">
+            <img src="alexpoza.png" alt="Alexandru Filip profile photo" class="profile-img">
+
+            <h2>Frontend Developer in Progress</h2>
+
+            <p>
+                Focused on clean UI, real projects, APIs, responsive layouts and strong JavaScript fundamentals.
+            </p>
+
+            <div class="mini-stats">
+                <div class="stat">
+                    <strong>4</strong>
+                    <span>Projects</span>
+                </div>
+                <div class="stat">
+                    <strong>3</strong>
+                    <span>Core Tech</span>
+                </div>
+                <div class="stat">
+                    <strong>100%</strong>
+                    <span>Learning</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!-- PROJECTS -->
+<section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-subtitle">
+        A short introduction about who I am and what I am building.
+    </p>
+
+    <div class="glass-card">
+        <p class="about-text">
+            I am Alexandru Filip, currently learning frontend development and building practical projects
+            to improve my coding, UI and problem-solving skills. My current stack is HTML, CSS and JavaScript,
+            and my next step is React. I focus on creating real applications that are responsive, interactive
+            and easy to use.
+        </p>
+    </div>
+</section>
+
+<section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <p class="section-subtitle">
+        Technologies and concepts I have used in real projects.
+    </p>
+
+    <div class="skills-grid">
+        <div class="skill-card">
+            <div class="skill-icon">🌐</div>
+            <h3>HTML</h3>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">🎨</div>
+            <h3>CSS</h3>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">⚡</div>
+            <h3>JavaScript</h3>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">📱</div>
+            <h3>Responsive UI</h3>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">🔌</div>
+            <h3>API Fetching</h3>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">💾</div>
+            <h3>LocalStorage</h3>
+        </div>
+    </div>
+</section>
+
 <section id="projects">
-<h2>Projects</h2>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">
+        A selection of projects built while learning frontend development.
+    </p>
 
-<div class="projects">
+    <div class="projects-grid">
 
-<div class="project">
-<h3>To Do App</h3>
-<a href="https://blaualex97-commits.github.io/todo-app/" target="_blank">Live</a>
-</div>
+        <article class="project-card">
+            <span class="project-number">01</span>
+            <h3>Personal Portfolio</h3>
+            <p>
+                A modern responsive portfolio website designed to present my skills,
+                projects and contact information.
+            </p>
 
-<div class="project">
-<h3>Movie App</h3>
-<a href="https://blaualex97-commits.github.io/movie-search-app/" target="_blank">Live</a>
-</div>
+            <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
 
-<div class="project">
-<h3>Weather App</h3>
-<a href="https://blaualex97-commits.github.io/weather-app/" target="_blank">Live</a>
-</div>
+            <div class="project-links">
+                <a href="https://blaualex97-commits.github.io/portofoliu-Alexandru.Filip/" target="_blank" class="small-btn">Live Demo</a>
+                <a href="https://github.com/blaualex97-commits/portofoliu-Alexandru.Filip" target="_blank" class="small-btn outline">GitHub</a>
+            </div>
+        </article>
 
-</div>
+        <article class="project-card">
+            <span class="project-number">02</span>
+            <h3>To Do App</h3>
+            <p>
+                Task manager with add, delete, complete, edit, filters,
+                localStorage, responsive design and dark/light theme.
+            </p>
+
+            <div class="tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">LocalStorage</span>
+                <span class="tag">Responsive</span>
+            </div>
+
+            <div class="project-links">
+                <a href="https://blaualex97-commits.github.io/todo-app/" target="_blank" class="small-btn">Live Demo</a>
+                <a href="https://github.com/blaualex97-commits/todo-app" target="_blank" class="small-btn outline">GitHub</a>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <span class="project-number">03</span>
+            <h3>Movie Search App</h3>
+            <p>
+                Movie search app using APIs, with movie details modal,
+                favorites, localStorage and trailer support.
+            </p>
+
+            <div class="tags">
+                <span class="tag">API</span>
+                <span class="tag">Modal</span>
+                <span class="tag">Favorites</span>
+                <span class="tag">JavaScript</span>
+            </div>
+
+            <div class="project-links">
+                <a href="https://blaualex97-commits.github.io/movie-search-app/" target="_blank" class="small-btn">Live Demo</a>
+                <a href="https://github.com/blaualex97-commits/movie-search-app" target="_blank" class="small-btn outline">GitHub</a>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <span class="project-number">04</span>
+            <h3>Weather App</h3>
+            <p>
+                Weather application using OpenWeather API with autocomplete,
+                current weather, 5-day forecast, animated backgrounds and recent searches.
+            </p>
+
+            <div class="tags">
+                <span class="tag">OpenWeather API</span>
+                <span class="tag">Forecast</span>
+                <span class="tag">Animations</span>
+                <span class="tag">LocalStorage</span>
+            </div>
+
+            <div class="project-links">
+                <a href="https://blaualex97-commits.github.io/weather-app/" target="_blank" class="small-btn">Live Demo</a>
+                <a href="https://github.com/blaualex97-commits/weather-app" target="_blank" class="small-btn outline">GitHub</a>
+            </div>
+        </article>
+
+    </div>
 </section>
 
-<!-- CONTACT -->
+<section id="journey">
+    <h2 class="section-title">Learning Journey</h2>
+    <p class="section-subtitle">
+        My current development path and next steps.
+    </p>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-date">Step 01</div>
+            <div class="timeline-content">
+                Built a personal portfolio and learned HTML structure, CSS styling, responsive layout and basic JavaScript interactions.
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-date">Step 02</div>
+            <div class="timeline-content">
+                Built a To Do App with DOM manipulation, localStorage, filters, editing and theme switching.
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-date">Step 03</div>
+            <div class="timeline-content">
+                Built API-based projects like Movie Search App and Weather App using fetch, async/await and dynamic UI rendering.
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-date">Next</div>
+            <div class="timeline-content">
+                Moving into React to learn components, props, state, hooks and modern frontend workflows.
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="contact">
-<h2>Contact</h2>
+    <h2 class="section-title">Contact</h2>
+    <p class="section-subtitle">
+        Open to junior frontend opportunities, internships and collaboration.
+    </p>
 
-<div class="card contact">
+    <div class="glass-card contact-card">
+        <p>Email: <a href="mailto:blaualex97@gmail.com">blaualex97@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/blaualex97-commits" target="_blank">github.com/blaualex97-commits</a></p>
 
-<p>Email: <a href="mailto:blaualex97@gmail.com">blaualex97@gmail.com</a></p>
-
-<div class="hero-actions">
-
-<a href="cv-alexandru-filip.pdf" download class="btn">
-⬇ Download CV
-</a>
-
-<a href="https://mail.google.com/mail/?view=cm&to=blaualex97@gmail.com"
-target="_blank"
-class="btn secondary">
-✉ Send Email
-</a>
-
-</div>
-
-</div>
+        <div class="hero-actions">
+            <a href="cv-alexandru-filip.pdf" download class="btn">⬇ Download CV</a>
+            <a href="https://mail.google.com/mail/?view=cm&to=blaualex97@gmail.com" target="_blank" class="btn secondary">✉ Send Email</a>
+        </div>
+    </div>
 </section>
 
 <footer>
-Built by Alex
+    Built by Alexandru Filip • HTML, CSS & JavaScript
 </footer>
 
-</div>
+</main>
 
+<script>
+function toggleTheme() {
+    document.body.classList.toggle("light-mode");
+}
+</script>
 </body>
 </html>
